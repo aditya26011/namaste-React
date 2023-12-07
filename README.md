@@ -1,0 +1,14 @@
+# Parcel
+-Dev Build
+-Local Server
+-HMR= hot module replacement
+-File Watching algorithm - written in c++
+-Faster Builds -bcs of caching
+-Image Optimaization
+-Minification
+-Bundling
+-Compression of files
+-Consistent hashing
+-differential Bundling-support for older version of browsers
+-HTTPs
+-different dev and prod builds
