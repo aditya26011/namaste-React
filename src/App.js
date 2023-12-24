@@ -31,6 +31,7 @@ const AppLayout=()=>{
     return(
         <div className="app">
             <HeaderComponent/>
+            {/* <BodyComponent/> */}
             <Outlet/>
         </div>
     )

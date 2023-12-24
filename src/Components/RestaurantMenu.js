@@ -41,9 +41,8 @@ const RestuarantMenu = () => {
     (
     <li key={item.card.info.id}>
         {item.card.info.name} 
-    -{"Rs"} {item.card.info.price/100}
-    </li>
-    ))}
+    -{"Rs"} {item.card.info.price/100} </li>
+    ))} 
     
   </ul>
 </div>);
