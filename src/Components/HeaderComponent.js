@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const HeaderComponent=()=>{
 
@@ -14,6 +15,8 @@ const HeaderComponent=()=>{
             console.log("useEffect Called");
         },[loginBtn])
 
+        const OnlineStatus=useOnlineStatus();
+
 
     return(
         <div className="header">
@@ -22,9 +25,12 @@ const HeaderComponent=()=>{
             </div>
             <div className="navbar">
                 <ul>
+                    <li>Online Status:{OnlineStatus?'✅':'🔴'}</li>
                     <li> <Link to="/">Home</Link></li>
                     <li> <Link to="/about">About Us</Link></li>
                     <li><Link to="/contact">Contact Us</Link></li>
+                    <li><Link to="/grocery">Grocery</Link></li>
+
                     <li>Cart</li>
                     <button onClick={()=>{
                     loginBtn=="login"?setLoginBtn("logout"):setLoginBtn("login")
