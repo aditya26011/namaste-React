@@ -3,6 +3,8 @@
 import React from "react"
 import  ReactDOM from "react-dom/client";
 import HeaderComponent from "./Components/HeaderComponent"
+// import BodyComponent from "./Components/BodyComponent";
+
 import BodyComponent from "./Components/BodyComponent";
 import {RouterProvider, createBrowserRouter,Outlet} from 'react-router-dom';
 import AboutComponent from "./Components/AboutComponent";
