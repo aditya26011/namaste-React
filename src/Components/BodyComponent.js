@@ -36,23 +36,24 @@ setfilteredRestaurant(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithSt
 
   return listOfResturrant.length===0 ?<ShimmerComponent/> : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
-            <input type="text" className="search-box" 
+      <div className="flex items-center">
+        <div className="my-4 p-4">
+            <input type="text" className="border border-solid border-black " 
              value={searchText}
               onChange={(e)=>{
                 setSearchText(e.target.value);
             }}/>
-            <button onClick={()=>{
+            <button className="px-3 py-2 bg-green-400 m-4 rounded-lg" onClick={()=>{
                 //filter the restaurants based on input and update the UI
                 // setSearchText(value)
              const filteredList=listOfResturrant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase()));
              setfilteredRestaurant(filteredList);
             }}>Search</button>
         </div>
-.
-        <button
-          className="filter-btn"
+            
+            <div className="my-4 p-4 ">
+            <button
+          className=" bg-red-300 p-2 rounded-lg"
           onClick={() => {
             const filteredList = listOfResturrant.filter(
               (res) => res.info.avgRating >= 4
@@ -64,8 +65,11 @@ setfilteredRestaurant(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithSt
         </button>
 
 
+            </div>
+       
+
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap ">
         {filteredRestaurant.map((restaurant) => (
          <Link key={restaurant.info.id} to={"restaurants/"+restaurant.info.id}> <RestaurantCard restList={restaurant} /></Link>
         ))}
