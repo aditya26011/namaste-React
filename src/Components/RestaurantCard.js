@@ -26,7 +26,7 @@ export const withCostOfTwo=(RestaurantCard)=>{
     return (props)=>{
         return(
             <div>
-                <label className="absolute bg-black text-white m-2 p-2  rounded-lg">CostForTwo</label>
+                <label className="absolute bg-black text-white m-2 p-2  rounded-lg">Above 4.5 rating</label>
                 <RestaurantCard {...props}/>
             </div>
         )

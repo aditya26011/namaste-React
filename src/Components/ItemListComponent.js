@@ -12,7 +12,7 @@ const ItemListComponent=({items})=>{
                 <div className="py-2" >
                     
                     <span className=" font-bold">{item?.card?.info?.name}</span>
-                    <span>-₹{item?.card?.info?.price/100 }</span>
+                    <span>-₹{item.card.info.price ? item.card.info.price/100 : item.card.info.defaultPrice/100}</span>
                 </div>
                 <p className=" text-sm">{item?.card?.info?.description}</p>
                 </div>

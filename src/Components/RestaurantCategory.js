@@ -1,14 +1,14 @@
 import {  useState } from "react";
 import ItemListComponent from "./ItemListComponent";
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data,showItems,setShowIndex }) => {
 
-    const[showItems,setShowItems]=useState(false)
-//   console.log(data);
+//     const[showItems,setShowItems]=useState(false)
+// //   console.log(data);
 
 const handleClick=()=>{
-    console.log("clicked");
+    // console.log("clicked");
     //to toggle 
-    setShowItems(!showItems);
+    setShowIndex();
 }
   return (
     <div>
@@ -18,12 +18,13 @@ const handleClick=()=>{
         onClick={handleClick}
         >
           <span className="font-bold text-lg">
-            {data.title} ({data?.itemCards?.length}
-            {data?.categories?.length}){" "}
+            {data.title} ({data?.itemCards?.length})
+            {/* {data?.categories?.length}){" "} */}
           </span>
           <span>🔽</span>
         </div>
-      {showItems && <ItemListComponent items={data.itemCards} />}
+        {/*Show ListItems only when showItems is true */}
+      {showItems && <ItemListComponent items={data.itemCards} />}   
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import ShimmerComponent from "./ShimmerComponent";
@@ -10,7 +11,7 @@ const RestuarantMenu = () => {
   const resInfo=useRestaurantMenu(restId);
 
   
-
+const [showIndex,setShowIndex]=useState(0);
  
 
   if (resInfo === null) return <ShimmerComponent/>
@@ -22,10 +23,11 @@ const RestuarantMenu = () => {
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards[1]?.card?.card;
   // console.log( resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards);
 
+
+  //Filtering out the cards with category equal to ItemCategory to show that cards only
   const categories=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter((c)=>{
     return c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-  // ||
-  // c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+  
 })
 
 // console.log(categories);
@@ -36,8 +38,14 @@ const RestuarantMenu = () => {
   <p className="font-bold">
     {cuisines.join(",")} - {costForTwoMessage}
   </p>
-  {categories.map((category)=><RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card}/>)}
- 
+  {/* category accordian */}
+  {categories.map((category,index)=>
+  <RestaurantCategory key={category?.card?.card?.title} 
+  data={category?.card?.card} 
+  showItems={index===showIndex? true :false}
+  //Passing setShowIndex indirectly as function
+  setShowIndex={()=>{setShowIndex(index)}}
+  />)} 
 </div>);
 };
  

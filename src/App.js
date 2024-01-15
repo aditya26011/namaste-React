@@ -34,7 +34,7 @@ const AppLayout=()=>{
     return(
         <div className="app">
             <HeaderComponent/>
-            {/* <BodyComponent/> */}
+            {/* <BodyComponent/> */} 
             <Outlet/>
         </div>
     )

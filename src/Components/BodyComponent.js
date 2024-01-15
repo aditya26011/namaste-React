@@ -1,11 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import ShimmerComponent from "./ShimmerComponent";
 import useOnlineStatus from "../utils/useOnlineStatus";
 // import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { withCostOfTwo } from "./RestaurantCard";
-
+import RestaurantCard from "./RestaurantCard";
 
 
 
@@ -29,13 +28,13 @@ const BodyComponent = () => {
 
     const json=await data.json();
     console.log(json);
-    console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
-setlistRestaurrant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
-setfilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+setlistRestaurrant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
+setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
-  const RestaurantWithCostOfTwo=withCostOfTwo(RestaurantCard);
+  const RestaurantWithCostOfTwo=withCostOfTwo(RestaurantCard);//higher Order Component
 
   const OnlineStatus=useOnlineStatus();
 
@@ -49,6 +48,7 @@ setfilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithSt
         <div className="my-4 p-4">
             <input type="text" className="border border-solid border-black " 
              value={searchText}
+             //As soon as input value changes searchtext also change
               onChange={(e)=>{
                 setSearchText(e.target.value);
             }}/>
@@ -85,7 +85,7 @@ setfilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithSt
          to={"restaurants/"+restaurant.info.id}> 
 
          {/* if the restaurant has with cost of two then add label to it  */
-          restaurant.info.costForTwo?(<RestaurantWithCostOfTwo restList={restaurant}/>):(<RestaurantCard restList={restaurant}/>)}
+          restaurant.info.avgRating>4.5?(<RestaurantWithCostOfTwo restList={restaurant}/>):(<RestaurantCard restList={restaurant}/>)}
          
          </Link>
         ))}
