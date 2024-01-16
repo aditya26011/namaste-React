@@ -1,12 +1,16 @@
 import React, { useEffect } from "react"
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const HeaderComponent=()=>{
 
-    [loginBtn,setLoginBtn]=useState("Login")
+    [loginBtn,setLoginBtn]=useState("Login");
+
+    const {UserLoggedIn}=useContext(UserContext);
+    console.log(UserLoggedIn);
 
         //if no dependency array called every time when the componenet is rendered.
         //if empty dependency array=>[]empty called just once when the component is rendered first time.
@@ -35,6 +39,8 @@ const HeaderComponent=()=>{
                     <button onClick={()=>{
                     loginBtn=="login"?setLoginBtn("logout"):setLoginBtn("login")
                     }} className="login">{loginBtn}</button>
+                    <li className="px-4 font-bold">{UserLoggedIn}</li>
+
                 </ul>
             </div>
         </div>
