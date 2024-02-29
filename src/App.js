@@ -12,6 +12,12 @@ import ErrorComponent from "./Components/ErrorComponent";
 import RestuarantMenu from "./Components/RestaurantMenu";
 import ShimmerComponent from "./Components/ShimmerComponent";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import Appstore from "./utils/Appstore";
+import CartComponent from "./Components/CartComponent";
+
+
+
 // import GroceryComponent from "./Components/GroceryComponent";
 /*
 Header
@@ -46,7 +52,8 @@ useEffect(()=>{
 
 
     return(
-      // { Passing setUserName to set in the Body component}
+      <Provider store={Appstore}>
+      {/* // { Passing setUserName to set in the Body component} */}
       <UserContext.Provider value={{UserLoggedIn:userName,setUserName}}>
         <div className="app">
             <HeaderComponent/>
@@ -54,6 +61,7 @@ useEffect(()=>{
             <Outlet/>
         </div>
         </UserContext.Provider>
+        </Provider>
     )
 }
 
@@ -77,6 +85,10 @@ const appRouter=createBrowserRouter([
       {
         path:"/grocery",
         element:<Suspense fallback={<ShimmerComponent/>}><GroceryComponent/></Suspense>
+      },
+      {
+        path:"/cart",
+        element:<CartComponent/>
       },
       {
         path:"/restaurants/:restId",//dynamin path
